@@ -11,6 +11,6 @@ jobs:
     uses: sensirion/.github/.github/workflows/driver.arduino.check.yml@main
     with:
       expect-arduino-examples: true
-      lint-lib-manager-check: update
+      lint-lib-manager-check: submit
 
   
