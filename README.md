@@ -1,3 +1,6 @@
+> **AVR Boards are not fully compatible with SPS30 firmware-version > 1.0:**
+> - readSerialNumber will not work
+> - Float measurement mode will not work
 # Sensirion I²C SPS30 Arduino Library
 
 This is the Sensirion SPS30 library for Arduino allowing you to
