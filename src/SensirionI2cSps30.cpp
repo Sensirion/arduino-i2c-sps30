@@ -372,6 +372,14 @@ int16_t SensirionI2cSps30::deviceReset() {
 }
 
 void SensirionI2cSps30::begin(TwoWire& i2cBus, uint8_t i2cAddress) {
+#ifdef __AVR__
+    Serial.println();
+    Serial.println("WARNING: AVR Boards are not fully compatible with SPS30 "
+                   "firmware-version > 1.0:");
+    Serial.println("  - readSerialNumber will not work");
+    Serial.println("  - Float measurement mode will not work");
+    Serial.println();
+#endif
     _i2cBus = &i2cBus;
     _i2cAddress = i2cAddress;
 }
