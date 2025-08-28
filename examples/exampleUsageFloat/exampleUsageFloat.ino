@@ -93,8 +93,8 @@ void loop() {
     Serial.print(dataReadyFlag);
     Serial.println();
     error = sensor.readMeasurementValuesFloat(mc1p0, mc2p5, mc4p0, mc10p0,
-                                               nc0p5, nc1p0, nc2p5, nc4p0,
-                                               nc10p0, typicalParticleSize);
+                                              nc0p5, nc1p0, nc2p5, nc4p0,
+                                              nc10p0, typicalParticleSize);
     if (error != NO_ERROR) {
         Serial.print("Error trying to execute readMeasurementValuesFloat(): ");
         errorToString(error, errorMessage, sizeof errorMessage);
