@@ -182,6 +182,10 @@ You will find pinout schematics for recommended board models below:
    Plotter` via the `Tools` menu to observe the measurement values. Note that
    the `Baud Rate` in the used tool has to be set to `115200 baud`.
 
+> **AVR Boards are not fully compatible with SPS30 firmware-version > 1.0:**
+> - readSerialNumber is limited to 20 Bytes which is enouth for probably every sensor.
+> - Float measurement mode will not work, due to limitations of the Wire library. Use Uint16 measurement mode instead.
+
 ## Contributing
 
 **Contributions are welcome!**
