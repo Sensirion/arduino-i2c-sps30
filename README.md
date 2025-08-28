@@ -1,6 +1,3 @@
-> **AVR Boards are not fully compatible with SPS30 firmware-version > 1.0:**
-> - readSerialNumber will not work
-> - Float measurement mode will not work
 # Sensirion I²C SPS30 Arduino Library
 
 This is the Sensirion SPS30 library for Arduino allowing you to
@@ -184,6 +181,10 @@ You will find pinout schematics for recommended board models below:
 4. When the upload process has finished, open the `Serial Monitor` or `Serial
    Plotter` via the `Tools` menu to observe the measurement values. Note that
    the `Baud Rate` in the used tool has to be set to `115200 baud`.
+
+> **AVR Boards are not fully compatible with SPS30 firmware-version > 1.0:**
+> - readSerialNumber is limited to 20 Bytes which is enouth for probably every sensor.
+> - Float measurement mode will not work, due to limitations of the Wire library. Use Uint16 measurement mode instead.
 
 ## Contributing
 

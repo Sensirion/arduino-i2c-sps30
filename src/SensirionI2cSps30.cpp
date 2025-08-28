@@ -38,6 +38,7 @@
 
 #include "SensirionI2cSps30.h"
 #include <Arduino.h>
+#include <assert.h>
 
 // make sure that we use the proper definition of NO_ERROR
 #ifdef NO_ERROR
@@ -67,6 +68,18 @@ int16_t
 SensirionI2cSps30::startMeasurement(SPS30OutputFormat measurementOutputFormat) {
     int16_t localError = NO_ERROR;
     uint8_t* buffer_ptr = communication_buffer;
+#ifdef __AVR__
+    if (measurementOutputFormat == SPS30_OUTPUT_FORMAT_OUTPUT_FORMAT_FLOAT) {
+        Serial.println();
+        Serial.println(
+            "WARNING: AVR Boards are not fully compatible with SPS30 "
+            "firmware-version > 1.0:");
+        Serial.println("  - Float measurement mode will not work");
+        Serial.println();
+        delay(2000);
+        assert(false);
+    }
+#endif
     SensirionI2CTxFrame txFrame =
         SensirionI2CTxFrame::createWithUInt16Command(0x10, buffer_ptr, 5);
     localError |= txFrame.addUInt16(measurementOutputFormat);
@@ -372,14 +385,6 @@ int16_t SensirionI2cSps30::deviceReset() {
 }
 
 void SensirionI2cSps30::begin(TwoWire& i2cBus, uint8_t i2cAddress) {
-#ifdef __AVR__
-    Serial.println();
-    Serial.println("WARNING: AVR Boards are not fully compatible with SPS30 "
-                   "firmware-version > 1.0:");
-    Serial.println("  - readSerialNumber will not work");
-    Serial.println("  - Float measurement mode will not work");
-    Serial.println();
-#endif
     _i2cBus = &i2cBus;
     _i2cAddress = i2cAddress;
 }
